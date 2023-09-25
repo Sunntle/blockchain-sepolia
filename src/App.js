@@ -14,7 +14,6 @@ const options = {
     },
   },
 };
-
 const drizzleStore = generateStore(options);
 const drizzle = new Drizzle(options, drizzleStore);
 function App() {
