@@ -4,6 +4,7 @@ import web3 from "./web3";
 import { drizzleReactHooks } from "@drizzle/react-plugin";
 import LoadingComponent from "./components/loading";
 import MainLayout from "./components/MainLayout";
+import { useState } from "react";
 const options = {
   contracts: [CampaignFactory],
   web3: {
@@ -16,13 +17,29 @@ const options = {
 };
 const drizzleStore = generateStore(options);
 const drizzle = new Drizzle(options, drizzleStore);
+
 function App() {
+  const [isMetaMaskInstalled, setIsMetaMaskInstalled] = useState(
+    typeof window.ethereum !== "undefined"
+  );
+  const handleInstallMetaMask = () => {
+    window.open("https://metamask.io/download.html", "_blank");
+  };
   return (
     <drizzleReactHooks.DrizzleProvider drizzle={drizzle}>
       <drizzleReactHooks.Initializer
         error="There was an error."
         loadingContractsAndAccounts="Also still loading."
-        loadingWeb3={<LoadingComponent />}
+        loadingWeb3={
+          isMetaMaskInstalled ? (
+            <LoadingComponent />
+          ) : (
+            <div>
+              <p>MetaMask is not installed.</p>
+              <button onClick={handleInstallMetaMask}>Download MetaMask</button>
+            </div>
+          )
+        }
       >
         <MainLayout />
       </drizzleReactHooks.Initializer>
