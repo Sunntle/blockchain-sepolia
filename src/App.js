@@ -9,8 +9,8 @@ const options = {
   web3: {
     customProvider: web3,
     fallback: {
-      type: "ws",
-      url: `ws://mainnet.infura.io/ws/v3/${process.env.REACT_APP_PROJECT_ID}`,
+      type: "wss",
+      url: `wss://mainnet.infura.io/ws/v3/${process.env.REACT_APP_PROJECT_ID}`,
     },
   },
 };
