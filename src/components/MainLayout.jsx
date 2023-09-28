@@ -39,7 +39,6 @@ function MainLayout() {
   }
   return (
     <div>
-      {console.log(drizzleState)}
       {walletConnected ? (
         <div>
           <span style={{ fontWeight: "700" }}>
