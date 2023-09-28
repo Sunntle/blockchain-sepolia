@@ -16,10 +16,10 @@ const options = {
 };
 const drizzleStore = generateStore(options);
 const drizzle = new Drizzle(options, drizzleStore);
-console.log(process.env.REACT_APP_PROJECT_ID);
 function App() {
   return (
     <drizzleReactHooks.DrizzleProvider drizzle={drizzle}>
+      {console.log(drizzle)}
       <drizzleReactHooks.Initializer
         error="There was an error."
         loadingContractsAndAccounts="Also still loading."
