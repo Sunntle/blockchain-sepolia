@@ -14,7 +14,6 @@ function MainLayout() {
   const { drizzle } = drizzleReactHooks.useDrizzle();
   const walletConnected =
     drizzleState && drizzleState.accounts && drizzleState.accounts[0];
-
   const connectCampaign = (address, index) => {
     if (!drizzle.contractList.some((el) => el.address === address)) {
       const contractConfig = {
@@ -40,7 +39,7 @@ function MainLayout() {
   return (
     <div>
       {walletConnected ? (
-        <div>
+        <div  className="text-red-500">
           <span style={{ fontWeight: "700" }}>
             {" "}
             Account: {drizzleState.accounts[0] ?? "Nothing"}
@@ -49,7 +48,7 @@ function MainLayout() {
         </div>
       ) : (
         <div>
-          <p onClick={getAccount}>
+          <p onClick={getAccount} className="text-red-500">
             Please connect your wallet to access the content.
           </p>
         </div>

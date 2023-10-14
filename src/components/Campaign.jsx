@@ -14,7 +14,7 @@ function CampaignComponents({ campaign }) {
     try {
       const result = await campaign.methods.contribute().send({
         from: drizzleState.accounts[0],
-        value: web3.utils.toWei("1.1", "ether"),
+        value: web3.utils.toWei("0.001", "ether"),
         gas: web3.utils.toHex(1000000),
       });
       console.log("Transaction result:", result);
