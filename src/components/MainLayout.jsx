@@ -165,7 +165,7 @@ function MainLayout() {
         account={drizzleState.accounts[0]}
         minimumToJoinCampaign={0.001}
       />{" "}
-      <button onClick={() => setShow(!show)}>Get all Campaign address</button>
+      <button className="block" onClick={() => setShow(!show)}>Get all Campaign address</button>
       {show && <GetAllCampaign connectCampaign={connectCampaign} />}
       {campaign && <CampaignComponents campaign={campaign} />}
     </div>
