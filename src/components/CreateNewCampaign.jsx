@@ -8,6 +8,7 @@ function CreateNewCampaign({ account, minimumToJoinCampaign }) {
   return (
     <div>
       <button
+        className="font-semibold gradient text-white py-2 px-4 rounded-lg active:scale-95 transition duration-150"
         onClick={useCallback(
           () =>
             send(web3.utils.toWei(minimumToJoinCampaign.toString(), "ether"), {
@@ -16,7 +17,7 @@ function CreateNewCampaign({ account, minimumToJoinCampaign }) {
           [account, minimumToJoinCampaign, send]
         )}
       >
-        Create new campaign
+        Create campaign with 0.001ETH
       </button>
       {TXObjects.length > 0 &&
         TXObjects.map(
