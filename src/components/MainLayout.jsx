@@ -90,6 +90,7 @@ function MainLayout() {
           <img
             src="https://i.pinimg.com/564x/ce/86/ea/ce86eaae3d7f3e7295ab22ad4afcc50e.jpg"
             className="w-full h-full object-cover"
+            alt=""
           />
           <div className="absolute bottom-4 left-4 bg-white shadow-sm p-[10px] rounded-lg">
             <h1 className="font-semibold">Địa chỉ trung tâm chiến dịch:</h1>
@@ -127,6 +128,7 @@ function MainLayout() {
                 <img
                   src="https://cdn0.iconfinder.com/data/icons/pixel-perfect-at-24px-volume-3/24/5003-512.png"
                   className="w-full h-full object-cover"
+                  alt=""
                 />
               </motion.button>
               <div className="mt-8">
@@ -161,11 +163,13 @@ function MainLayout() {
         Khi tạo 1 campaign - sẽ tự động thiết lập số tối thiểu để tham gia vào 1
         campaign là 0.001 eth
       </p>
+      <div className="flex my-3 gap-2">
       <CreateNewCampaign
         account={drizzleState.accounts[0]}
         minimumToJoinCampaign={0.001}
       />{" "}
-      <button onClick={() => setShow(!show)}>Get all Campaign address</button>
+      <button onClick={() => setShow(!show)} className="font-semibold gradient text-white py-2 px-4 rounded-lg active:scale-95 transition duration-150">Show list Campaign address</button>
+      </div>
       {show && <GetAllCampaign connectCampaign={connectCampaign} />}
       {campaign && <CampaignComponents campaign={campaign} />}
     </div>
