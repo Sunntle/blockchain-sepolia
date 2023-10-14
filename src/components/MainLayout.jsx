@@ -23,7 +23,11 @@ function MainLayout() {
         web3Contract: new web3.eth.Contract(Campaign.abi, address),
       };
       drizzle.addContract(contractConfig);
+    
       setCampaign(drizzle.contracts[`Campaign${index}`]);
+    }else{
+      const campaignSelected = drizzle.contractList?.find(el => el.address === address)
+      if(campaignSelected) setCampaign(campaignSelected)
     }
   };
   async function getAccount() {
