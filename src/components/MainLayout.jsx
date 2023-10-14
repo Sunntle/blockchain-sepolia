@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { drizzleReactHooks } from "@drizzle/react-plugin";
 import GetAllCampaign from "./GetAllCampaign";
 import CreateNewCampaign from "./CreateNewCampaign";
@@ -8,6 +8,8 @@ import CampaignComponents from "./Campaign";
 function MainLayout() {
   const [show, setShow] = useState(false);
   const [campaign, setCampaign] = useState(null);
+  const [isCheckScreen, setIsCheckScreen] = useState(false);
+
   const drizzleState = drizzleReactHooks.useDrizzleState(
     (drizzleState) => drizzleState
   );
@@ -36,10 +38,26 @@ function MainLayout() {
       });
     window.location.reload();
   }
-  return (
+
+  const handleResize = () => {
+    if (window.innerWidth < 768) {
+      setIsCheckScreen(true);
+    } else {
+      setIsCheckScreen(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    handleResize();
+  }, []);
+
+  return isCheckScreen ? (
+    <div>Mobile</div>
+  ) : (
     <div>
       {walletConnected ? (
-        <div  className="text-red-500">
+        <div className="text-red-500">
           <span style={{ fontWeight: "700" }}>
             {" "}
             Account: {drizzleState.accounts[0] ?? "Nothing"}
