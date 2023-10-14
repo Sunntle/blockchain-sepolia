@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { drizzleReactHooks } from "@drizzle/react-plugin";
 import GetAllCampaign from "./GetAllCampaign";
 import CreateNewCampaign from "./CreateNewCampaign";
@@ -30,7 +30,7 @@ function MainLayout() {
       if(campaignSelected) setCampaign(campaignSelected)
     }
   };
-  async function getAccount() {
+  const getAccount = useCallback(async ()=> {
     await window.ethereum
       .request({ method: "eth_requestAccounts" })
       .catch((err) => {
@@ -41,20 +41,23 @@ function MainLayout() {
         }
       });
     window.location.reload();
-  }
+  },[])
 
-  const handleResize = () => {
+  const handleResize = useCallback(() => {
     if (window.innerWidth < 768) {
       setIsCheckScreen(true);
     } else {
       setIsCheckScreen(false);
     }
-  };
+  },[])
 
   useEffect(() => {
     window.addEventListener("resize", handleResize);
     handleResize();
-  }, []);
+    return ()=>{
+      window.removeEventListener("resize", handleResize)
+    }
+  }, [handleResize]);
 
   return isCheckScreen ? (
     <div>Mobile</div>
